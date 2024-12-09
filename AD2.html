@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización</title>
+    <link rel="stylesheet" type="text/css" href="ISI.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h3>Cotización</h3>
+            <div class="logo-container">
+                <img src="C:\Users\octav\OneDrive\Documentos\Programas\HTML & CSS\ISI\Logos\Logo ISI simple.png" alt="Logo ISI simple">
+                <img src="C:\Users\octav\OneDrive\Documentos\Programas\HTML & CSS\ISI\Logos\Logo mic.jpg" alt="Logo mic">
+                <img src="C:\Users\octav\OneDrive\Documentos\Programas\HTML & CSS\ISI\Logos\Logo CSM sello.png" alt="Logo CSM Sello">
+            </div>
+        </div>
+        <p></p>
+        <form name="google-sheet" autocomplete="off" method="post">
+            <!-- Empieza tablas y entradas -->
+            <div class="input-list">
+                <div class="input-container">
+                    <label for="folio">Cliente</label>
+                    <input type="number" id="folio" name="folio" placeholder="No. Folio">
+                </div>
+                
+                <div class="input-container">
+                    <label for="cotización">Unidad</label>
+                    <input type="number" id="cotizacion" name="cotización" placeholder="Cotización">
+                </div> 
+
+                <div class="input-container">
+                    <label for="pre cotizacion">Pre cotización</label>
+                    <input type="number" id="pre-cotizacion" name="pre cotización" placeholder="Pre cotización">
+                </div>
+
+                <div class="input-container">
+                    <label for="garantía">Garantía</label>
+                    <input type="number" id="garantia" name="garantía" placeholder="número de garantía">
+                </div>
+            </div>      
+            <p></p>
+            <div class="input-list">
+                <div class="input-container">
+                    <label for="empresa_options">Empresa:</label>
+                    <select id="empresa_options" name="empresa_options" class="dropdown">
+                        <option value="null">Selecciona una empresa</option>
+                        <option value="ISI">ISI</option>
+                        <option value="MSC">MSC</option>
+                        <option value="BSC">MIC</option>
+                        <option value="ISIN">ISIN</option>
+                    </select>
+                </div>
+                <div class="input-container">
+                    <label for="zona_options">Zona:</label>
+                    <select id="zona_options" name="zona_options" class="dropdown">
+                        <option value="null">Selecciona una zona</option>
+                        <option value="GDL">GDL</option>
+                        <option value="MEX">MEX</option>
+                        <option value="PUE">PUE</option>
+                        <option value="QRO">QRO</option>
+                        <option value="VER">VER</option>
+                    </select>
+                </div>
+            </div>
+            <p></p>
+             <!-- Monto total -->
+            <p></p>
+            <!-- Segunda tabla -->
+            <table id="dynamicTable"> 
+                <tr>
+                    <th>Cantidad</th>
+                    <th>UM</th>
+                    <th>Descripción</th>
+                    <th>P.U.</th>
+                    <th>Costo</th>
+                </tr>
+                <tr>
+                    <td><input type="text" name="input0_row1" /></td>
+                    <td><input type="text" name="input1_row1" /></td> 
+                    <td><input type="text" name="input2_row1" /></td>
+                    <td><input type="text" name="input3_row1" /></td> 
+                    <td><input type="text" name="input4_row1" onchange="sumarCostos()" /></td> 
+                </tr> 
+            </table>
+            
+        </form>
+    </div>
+</body>
+</html>
+

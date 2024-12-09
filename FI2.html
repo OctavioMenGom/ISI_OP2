@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No. de Gasto</title>
+    <link rel="stylesheet" type="text/css" href="ISI.css">
+
+</head>
+<body>
+    <div class="container">
+        <form name="google-sheet" autocomplete="off" method="post">
+            <h3>No. de Gasto</h3>
+            <!-- Aquí va el resto de tu formulario y tablas... -->
+            <div class="input-list">
+                <div class="input-container">
+                    <label for="solicita">Solicita</label>
+                    <input type="text" id="solicita" name="solicita" placeholder="¿Quién solicita?">
+                </div>
+                
+                <div class="input-container">
+                    <label for="no_gasto">No. Gasto</label>
+                    <input type="number" id="no_gasto" name="no_gasto" placeholder="No. Gasto">
+                </div> 
+
+                <div class="input-container">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" name="fecha" placeholder="Introduce fecha....">
+                </div>
+
+            </div>      
+            <p></p>
+            <div class="input-list">
+                <div class="input-container">
+                    <label for="empresa_options">Empresa:</label>
+                    <select id="empresa_options" name="empresa_options" class="dropdown">
+                        <option value="null">Selecciona una empresa</option>
+                        <option value="Cafetal">Cafetal</option>
+                        <option value="Edificaciones">Edificaciones</option>
+                        <option value="Fresh & Limp">Fresh & Limp</option>
+                        <option value="Oficina 1104">Oficina 1104</option>
+                        <option value="Oficina 1403">Oficina 1403</option>
+                        <option value="UR">UR</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Plantas">Plantas</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="input-container">
+                    <label for="zona_options">Zona:</label>
+                    <select id="zona_options" name="zona_options" class="dropdown">
+                        <option value="null">Selecciona una zona</option>
+                        <option value="GDL">GDL</option>
+                        <option value="PUE">PUE</option>
+                    </select>
+                </div>
+            </div>
+            <p></p>
+
+             <div class="input-list">
+                <div class="input-container">
+                    <label for="forma_pago">Forma de pago</label>
+                    <input type="text" id="forma_pago" name="forma_pago" placeholder="¿Forma de pago?">
+                </div>
+                
+                <div class="input-container">
+                    <label for="numero_cliente">Gasto real</label>
+                    <input type="number" id="numero_cliente" name="numero_cliente" placeholder="Gasto real">
+                </div> 
+
+            <p></p>
+            <!-- Segunda tabla -->
+            <table id="dynamicTable"> 
+                <tr>
+                    <th>Cantidad</th>
+                    <th>UM</th>
+                    <th>Descripción</th>
+                    <th>P.U.</th>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td><input type="text" name="input0_row1" /></td>
+                    <td><input type="text" name="input1_row1" /></td> 
+                    <td><input type="text" name="input2_row1" /></td>
+                    <td><input type="text" name="input3_row1" /></td> 
+                    <td><input type="text" name="input4_row1" onchange="sumarCostos()" /></td> 
+                </tr> 
+            </table>
+            <div class="button-container">
+                <button class="add" type="button" onclick="addRow()">+</button>
+                <button class="remove" type="button" onclick="removeRow()">-</button>
+            </div>
+            <p></p>
+
+            <div class="input-list">
+                <div class="input-container">
+                    <label for="subtotal">Subtotal</label>
+                    <input type="number" id="subtotal" name="subtotal" placeholder="">
+                </div>
+                
+                <div class="input-container">
+                    <label for="iva">IVA</label>
+                    <input type="number" id="iva" name="iva" placeholder="">
+                </div> 
+
+                <div class="input-container">
+                    <label for="totalMonto">Total</label>
+                    <input type="number" id="totalMonto" name="totalMonto" placeholder="">
+                </div>
+
+            </div>
+ 
+            <p></p>
+            <!-- Botones -->                        
+            <button type="submit" name="Cargar">Cargar</button>
+            <button type="reset" class="reset" name="Limpiar">Limpiar</button>
+        </form>
+    </div>
+
+    <script>
+        const scriptURL = "https://docs.google.com/spreadsheets/d/1zvMdQj8Ud3i5o59_VkBGNbBVX5jHe8lO_ZwnhZdfcLU/edit?usp=sharing";
+        const form = document.forms['google-sheet'];
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert('¡Registro exitoso!'))
+                .catch(error => console.error('Error al cargar la información', error.message));
+        });
+
+        function addRow() {
+            var table = document.getElementById("dynamicTable");
+            var row = table.insertRow(-1);
+            for (var i = 0; i < 5; i++) { // Ajustado a 5 para incluir la columna "Costo"
+                var cell = row.insertCell(i);
+                cell.innerHTML = `<input type="text" name="input${i}_row${table.rows.length - 1}" onchange="sumarCostos()" />`;
+            }
+            sumarCostos(); // Actualiza la suma al agregar una nueva fila
+        }
+
+        function removeRow() {
+            var table = document.getElementById("dynamicTable");
+            var rowCount = table.rows.length;
+            if (rowCount > 2) {
+                table.deleteRow(-1);
+                sumarCostos(); // Actualiza la suma al eliminar una fila
+            } else {
+                alert('No se puede eliminar la fila inicial.');
+            }
+        }
+
+        function sumarCostos() {
+            var table = document.getElementById("dynamicTable");
+            var total = 0;
+            for (var i = 1; i < table.rows.length; i++) { // Comienza en 1 para omitir el encabezado
+                var costo = table.rows[i].cells[4].getElementsByTagName("input")[0].value;
+                total += parseFloat(costo) || 0; // Suma y convierte el valor a número
+            }
+            document.getElementById("totalMonto").value = total.toFixed(2); // Muestra el total en la tabla "Monto"
+        }
+    </script>
+</body>
+</html>
