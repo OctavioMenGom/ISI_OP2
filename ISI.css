@@ -5,7 +5,7 @@ body { font-family: Arial, sans-serif;
      justify-content: center;
     align-items: center; 
     min-height: 100vh; 
-    background-image: url("C:/Users/octav/OneDrive/Documentos/Programas/HTML & CSS/ISI/hq720.jpg"); }
+    background-image: url("hq720.jpg"); }
 
 .container {
     width: 90%; 
