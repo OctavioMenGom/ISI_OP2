@@ -7,13 +7,30 @@
     <link rel="stylesheet" type="text/css" href="ISI.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="hamburger-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div> 
+        </div>
+        <ul class="nav-links"> 
+           <li><a href="#">Inicio</a></li>
+           <li><a href="#">Folio de trabajo</a></li> 
+           <li><a href="#">No. Folio</a></li> 
+           <li><a href="#">No. de Gasto</a></li>
+           <li><a href="#">Costo</a></li> 
+           <li><a href="#">Hoja de validación</a></li>
+           <li><a href="#">Cotización</a></li>
+       </ul>
+    </nav>
+
     <div class="container">
         <div class="header">
-            <h3>No. Folio</h3>
+            <h3>No. de Gasto</h3>
             <div class="logo-container">
-                <img src="Logos/Logo ISI simple.png" alt="Logo ISI simple">
-                <img src="Logos/logo mic.jpg" alt="Logo mic">
-                <img src="Logos/Logo CSM sello.png" alt="Logo CSM Sello">
+                <img src="C:\Users\octav\OneDrive\Documentos\Programas\HTML & CSS\ISI_OP2\Logos\Logo ISI simple.png" alt="Logo ISI simple">
+                <img src="C:\Users\octav\OneDrive\Documentos\Programas\HTML & CSS\ISI_OP2\Logos\logo mic.jpg" alt="Logo mic">
+                <img src="C:\Users\octav\OneDrive\Documentos\Programas\HTML & CSS\ISI_OP2\Logos\Logo CSM sello.png" alt="Logo CSM Sello">
             </div>
         </div>
         <p></p>
@@ -25,53 +42,65 @@
             </div>
             <p></p>
             <!-- Empieza tablas y entradas -->
-            <div class="input-list">
-                <div class="input-container">
-                    <label for="folio">Folio</label>
-                    <input type="number" id="folio" name="folio" placeholder="No. Folio">
-                </div>
-                
-                <div class="input-container">
-                    <label for="cotización">Cotización</label>
-                    <input type="number" id="cotizacion" name="cotización" placeholder="Cotización">
-                </div> 
 
-                <div class="input-container">
-                    <label for="pre cotizacion">Pre cotización</label>
-                    <input type="number" id="pre-cotizacion" name="pre cotización" placeholder="Pre cotización">
-                </div>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <table border="1"> 
+                    <tr>
+                        <td>Folio</td>
+                        <td><input type="text" name="Folio" placeholder="No. Folio"/></td> 
+                    </tr>
+                    <tr>
+                        <td>Cotización</td>
+                        <td><input type="text" name="Cotización" placeholder="No. Cotización" /></td>
+                    </tr>
+                 </table>
 
-                <div class="input-container">
-                    <label for="garantía">Garantía</label>
-                    <input type="number" id="garantia" name="garantía" placeholder="número de garantía">
-                </div>
-            </div>      
+                 <table border="1"> 
+                    <tr>
+                        <td>Pre cotización</td>
+                        <td><input type="number" id="pre-cotizacion" name="pre cotización" placeholder="Pre cotización"></td> 
+                    </tr>
+                    <tr>
+                        <td>Garantía</td>
+                        <td><input type="number" id="garantia" name="garantía" placeholder="número de garantía"></td>
+                    </tr>
+                 </table>
+
+                 <table border="1"> 
+                    <tr>
+                        <td>Empresa</td>
+                        <td>
+                            <div style="display: flex; align-items: center;">
+                                <select id="empresa_options" name="empresa_options" class="dropdown">
+                                    <option value="null">Selecciona empresa</option>
+                                    <option value="ISI">ISI</option>
+                                    <option value="MSC">MSC</option>
+                                    <option value="BSC">MIC</option>
+                                    <option value="ISIN">ISIN</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Zona</td>
+                        <td>
+                            <div style="display: flex; align-items: center;">
+                                <select id="zona_options" name="zona_options" class="dropdown">
+                                    <option value="null">Selecciona una zona</option>
+                                    <option value="GDL">GDL</option>
+                                    <option value="MEX">MEX</option>
+                                    <option value="PUE">PUE</option>
+                                    <option value="QRO">QRO</option>
+                                    <option value="VER">VER</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                 </table>
+             </div>
+ 
             <p></p>
-            <div class="input-list">
-                <div class="input-container">
-                    <label for="empresa_options">Empresa:</label>
-                    <select id="empresa_options" name="empresa_options" class="dropdown">
-                        <option value="null">Selecciona una empresa</option>
-                        <option value="ISI">ISI</option>
-                        <option value="MSC">MSC</option>
-                        <option value="BSC">MIC</option>
-                        <option value="ISIN">ISIN</option>
-                    </select>
-                </div>
-                <div class="input-container">
-                    <label for="zona_options">Zona:</label>
-                    <select id="zona_options" name="zona_options" class="dropdown">
-                        <option value="null">Selecciona una zona</option>
-                        <option value="GDL">GDL</option>
-                        <option value="MEX">MEX</option>
-                        <option value="PUE">PUE</option>
-                        <option value="QRO">QRO</option>
-                        <option value="VER">VER</option>
-                    </select>
-                </div>
-            </div>
-            <p></p>
-                        <!-- Monto total -->
+            <!-- Monto total -->
             <table border="1">
                 <tr>
                     <th></th>
@@ -79,20 +108,18 @@
                 </tr>
                 <tr>
                     <td><b>FORMA DE PAGO</b></td>
-                    <td>                    
-                        <select id="pago_options1" name="pago_options1" class="dropdown"> 
-                            <option value="null">Selecciona una opción de pago</option>
-                            <option value="tarjeta">Tarjeta</option> 
-                            <option value="efectivo">Efectivo</option> 
-                            <option value="transferencia">Transferencia</option> 
-                        </select> 
-                        <select id="pago_options2" name="pago_options2" class="dropdown"> 
-                            <option value="null">Selecciona una opción de pago</option> 
-                            <option value="tarjeta">Tarjeta</option>
-                            <option value="efectivo">Efectivo</option> 
-                            <option value="transferencia">Transferencia</option>
-                        </select>
-                    </td> 
+                    <td>
+                        <div style="display: flex; align-items: center;">
+                            <select id="pago_options1" name="pago_options1" class="dropdown" style="margin-right: 10px;">
+                                <option value="null">Opción de pago</option>
+                                <option value="tarjeta">Tarjeta</option>
+                                <option value="efectivo">Efectivo</option>
+                                <option value="transferencia">Transferencia</option>
+                            </select>
+                            <input type="text" id="ReferenciaDePago" name="ReferenciaDePago" placeholder="Referencia de Pago">
+                        </div>
+                    </td>
+                    
                 </tr>
                 <tr>
                     <td><b>FACT/TICKET</b></td>
@@ -100,7 +127,7 @@
                 </tr>
                 <tr>
                     <td><b>MONTO</b></td>
-                    <td><input type="text" id="totalMonto" name="input3_row0" readonly/></td> 
+                    <td><input type="text" id="totalMonto" name="totalMonto" readonly/></td> 
                 </tr>
             </table>
             <table border="1"> 
@@ -180,8 +207,6 @@
                 <button class="add-table" type="button" onclick="addTable()">Agregar Tabla Complementaria</button>
                 <button class="remove-table" type="button" onclick="removeTable()">Quitar Tabla Complementaria</button>
             </div>
-
-
         </form>
     </div>
 
@@ -285,4 +310,5 @@
     </script>
 </body>
 </html>
+
 
