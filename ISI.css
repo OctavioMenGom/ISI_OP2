@@ -5,7 +5,7 @@ body { font-family: Arial, sans-serif;
      justify-content: center;
     align-items: center; 
     min-height: 100vh; 
-    background-image: url("hq720.jpg"); }
+    background-image: url("images/hq720.jpg"); }
 
 .container {
     width: 90%; 
@@ -172,3 +172,89 @@ input[type="text"], input[type="number"], input[type="date"] {
     margin-top: 20px;
     text-align: center;
 }
+
+/* Estilos para la barra de navegación */
+.navbar {
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    width: 100%;
+    z-index: 100; /* Asegúrate de que esté por encima de otros contenidos */
+    background-color: #333;
+    overflow: hidden;
+}
+
+/* Añade margen al cuerpo para evitar que el contenido quede oculto debajo de la barra de navegación */
+body {
+    margin-top: 50px; /* Ajusta esta cantidad según la altura de tu barra de navegación */
+}
+
+/* Estilos para los enlaces de navegación */
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    float: left;
+}
+
+.nav-links li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Cambiar color al pasar el mouse */
+.nav-links li a:hover {
+    background-color: #111;
+}
+
+/* Estilos para el menú hamburguesa */
+.hamburger-menu {
+    display: none; /* Ocultar inicialmente, mostrar solo en pantallas pequeñas */
+    cursor: pointer;
+}
+
+.hamburger-menu .line {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+}
+
+/* Mostrar el menú hamburguesa en pantallas pequeñas */
+@media screen and (max-width: 600px) {
+    .nav-links {
+        flex-direction: column;
+        display: none; /* Ocultar inicialmente */
+        width: 100%;
+    }
+
+    .nav-links li {
+        text-align: center;
+        padding: 10px;
+        border-top: 1px solid #444;
+        border-bottom: 1px solid #444;
+    }
+
+    .nav-links li a {
+        padding: 14px 16px;
+    }
+
+    .hamburger-menu {
+        display: block; /* Mostrar el menú hamburguesa */
+    }
+
+    /* Mostrar el menú cuando se hace clic en el menú hamburguesa */
+    .hamburger-menu.active + .nav-links {
+        display: flex;
+    }
+}
+
+
+
+
