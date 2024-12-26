@@ -28,10 +28,8 @@
     <div class="container">
         <div class="header">
             <h3>No. Folio</h3>
-            <div class="logo-container">
-                <img src="Logos\Logo ISI simple.png" alt="Logo ISI simple">
-                <img src="Logos\logo mic.jpg" alt="Logo mic">
-                <img src="Logos\Logo CSM sello.png" alt="Logo CSM Sello">
+            <div class="logo-container" id="logo-container">
+                <!-- Los logos se mostrarán aquí -->
             </div>
         </div>
         <p></p>
@@ -43,136 +41,107 @@
             </div>
             <p></p>
             <!-- Empieza tablas y entradas -->
-
             <div style="display: flex; gap: 20px; justify-content: center;">
                 <table border="1"> 
                     <tr>
+                        <td>Folio</td>
+                        <td>
+                            <div style="display: flex; align-items: center;">
+                                <input type="text" id="folio" name="Folio" placeholder="Introduce Folio..."/>
+                            </div>
+                        </td>
                         <td>Pre cotización</td>
                         <td><input type="checkbox" name="Pre cotización" value="pre-cotizacion"></td> 
-                    </tr>
-                    <tr>
                         <td>Cotización</td>
                         <td><input type="checkbox" name="Cotización" value="Cotización" /></td>
+                        <td>Fecha</td>
                     </tr>
-                 </table>
-
-                 <table border="1"> 
-                    <tr>
-                        <td>Folio</td>
-                        <td><input type="text" name="Folio" placeholder="No. Folio"/></td> 
-                    </tr>
-                    <tr>
-                        <td>Garantía</td>
-                        <td><input type="number" id="garantia" name="garantía" placeholder="número de garantía"></td>
-                    </tr>
-                 </table>
-
-                 <table border="1"> 
                     <tr>
                         <td>Empresa</td>
                         <td>
                             <div style="display: flex; align-items: center;">
-                                <select id="empresa_options" name="empresa_options" class="dropdown">
-                                    <option value="null">Selecciona empresa</option>
-                                    <option value="ISI">ISI</option>
-                                    <option value="MSC">MSC</option>
-                                    <option value="BSC">MIC</option>
-                                    <option value="ISIN">ISIN</option>
-                                </select>
-                            </div>
+                            <select id="empresa_options" name="empresa_options" class="dropdown" onchange="changeLogo()">
+                                <option value="null">Selecciona empresa</option>
+                                <option value="ISI">ISI</option>
+                                <option value="CSM">MSC</option>  
+                                <option value="MIC">MIC</option>
+                            </select>
+                        </div>
                         </td>
-                    </tr>
-                    <tr>
+                        <td>Garantía</td>
+                        <td><input type="text" id="folio" name="Folio" placeholder="Introduce Folio..."/></td>
                         <td>Zona</td>
                         <td>
                             <div style="display: flex; align-items: center;">
                                 <select id="zona_options" name="zona_options" class="dropdown">
-                                    <option value="null">Selecciona una zona</option>
-                                    <option value="GDL">GDL</option>
-                                    <option value="MEX">MEX</option>
-                                    <option value="PUE">PUE</option>
-                                    <option value="QRO">QRO</option>
-                                    <option value="VER">VER</option>
+                                    <option value="null">Selecciona zona...</option>
+                                    <option value="Puebla">PUE</option>
+                                    <option value="Queretaro">QRO</option>
                                 </select>
                             </div>
+                        </td>
+                        <td>
+                        <input type="date"/>
                         </td>
                     </tr>
                  </table>
              </div>
  
-            <p></p>
-            <!-- Monto total -->
             <table border="1">
                 <tr>
-                    <th></th>
-                    <th>Gastos</th> 
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>Gastos</b></td>
                 </tr>
                 <tr>
-                    <td><b>FORMA DE PAGO</b></td>
+                    <td>Atiende</td>
                     <td>
-                        <div style="display: flex; align-items: center;">
-                            <select id="pago_options1" name="pago_options1" class="dropdown" style="margin-right: 10px;">
-                                <option value="null">Opción de pago</option>
-                                <option value="tarjeta">Tarjeta</option>
-                                <option value="efectivo">Efectivo</option>
-                                <option value="transferencia">Transferencia</option>
-                            </select>
-                            <input type="text" id="ReferenciaDePago" name="ReferenciaDePago" placeholder="Referencia de Pago">
-                        </div>
+                        <select id="selectorHoja1">
+                            <option value="" disabled selected>¿Quién atiende?</option>
+                        </select>
                     </td>
+                    <td></td>
+                    <td>Planta</td>
+                    <td>Revolvedora</td>
+                    <td><b>Forma de Pago</b></td>
+                    <td>                            
+                        <select id="pago_options1" name="pago_options1" class="dropdown" style="margin-right: 10px;">
+                        <option value="null">Opción de pago</option>
+                        <option value="tarjeta">Tarjeta</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="transferencia">Transferencia</option>
+                    </select>
+                    <input type="text" id="ReferenciaDePago" name="ReferenciaDePago" placeholder="Referencia de Pago">
+                </td>
                 </tr>
                 <tr>
-                    <td><b>FACT/TICKET</b></td>
-                    <td><input type="text" name="input2_row0" /></td> 
-                </tr>
-                <tr>
-                    <td><b>MONTO</b></td>
-                    <td><input type="text" id="totalMonto" name="totalMonto" readonly/></td> 
-                </tr>
-            </table>
-            <table border="1"> 
-                <tr>
-                    <th></th>
-                    <th>Planta</th> 
-                    <th>Revolvedora</th>
-                </tr>
-                <tr>
+                    <td>No. Cliente</td>
+                    <td><input type="text" id="IDCliente" name="IDCliente" placeholder="¿Cuál es el número del cliente?"/></td> 
                     <td>Servicio</td>
-                    <td><input type="text" name="input1_row1" /></td> 
-                    <td><input type="text" name="input2_row1" /></td>
+                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox"/></td>
+                    <td><b>Fact / Ticket</b></td>
+                    <td><input type="text" name="input2_row0" /></td>
                 </tr>
                 <tr>
+                    <td>Cliente</td>
+                    <td>
+                        <select id="selectorHoja2">
+                            <option value="" disabled selected>¿Quién es el cliente?</option>
+                        </select>
+                    </td> 
                     <td>Mov/Trasl</td>
-                    <td><input type="text" name="input1_row2" /></td>
-                    <td><input type="text" name="input2_row2" /></td>
+                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox"/></td>
+                    <td><b>Monto</b></td>
+                    <td><input type="text" id="totalMonto" name="totalMonto" readonly/></td>
                 </tr>
-             </table>
 
-             <div class="input-list">
-                <div class="input-container">
-                    <label for="atiende">Atiende</label>
-                    <input type="number" id="atiende" name="nombre_atiende" placeholder="¿Quién atiende?">
-                </div>
-                
-                <div class="input-container">
-                    <label for="número Cliente">No. Cliente</label>
-                    <input type="number" id="número cliente" name="número_cliente" placeholder="¿Cuál es el no. cliente?">
-                </div> 
-
-                <div class="input-container">
-                    <label for="cliente">Cliente</label>
-                    <input type="text" id="cliente" name="cliente" placeholder="¿Quién es el cliente?">
-                </div>
-
-                <div class="input-container">
-                    <label for="solicita">Solicita</label>
-                    <input type="text" id="solicita" name="nombre_solicitante" placeholder="¿Quién lo solicita?">
-                </div>
-                <div class="input-container">
-                    <label for="fecha">Fecha</label>
-                    <input type="date" id="fecha" name="fecha" placeholder="Coloca la fecha...">
-                </div>
-            </div>   
+            </table>   
             <p></p>
             <div class="input-list">
                 <div class="input-container">
@@ -180,8 +149,9 @@
                     <input type="text" id="falla" name="falla" placeholder="Describe la falla...">
                 </div>
             </div>  
+ 
             <p></p>
-            <!-- Segunda tabla -->
+            <!-- Tabla dinámica -->
             <table id="dynamicTable"> 
                 <tr>
                     <th>Cantidad</th>
@@ -210,6 +180,7 @@
     </div>
 </body>
 </html>
+
 
 
 
