@@ -1,5 +1,5 @@
 // Script para manejar el formulario de Google Sheets
-const scriptURL = "https://docs.google.com/spreadsheets/d/1zvMdQj8Ud3i5o59_VkBGNbBVX5jHe8lO_ZwnhZdfcLU/edit?usp=sharing";
+const scriptURL = "https://docs.google.com/spreadsheets/d/12pDS4KLM1m3Rh_TAqbKIa4u-RP3hHS0HovnN8kbz1nc/edit?usp=sharing";
 const form = document.forms['google-sheet'];
 
 form.addEventListener('submit', e => {
@@ -7,6 +7,54 @@ form.addEventListener('submit', e => {
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => alert('¡Registro exitoso!'))
         .catch(error => console.error('Error al cargar la información', error.message));
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const url = 'https://script.google.com/macros/s/AKfycbxtmQt8O_g7auWw4P2Ay2Xy-KrmwMasp38cbkPOyP7lR2LRIusOZOp0AMbJvOxAkvtu/exec';
+
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Datos obtenidos:', data); // Verificar los datos obtenidos
+        const select1 = document.getElementById('selectorHoja1');
+        const select2 = document.getElementById('selectorHoja2');
+
+        // Verificar que los elementos select se obtienen correctamente
+        console.log('select1:', select1);
+        console.log('select2:', select2);
+
+        if (data['BD PERSONAL OP.']) {
+            console.log('Datos de Hoja1:', data['BD PERSONAL OP.']);
+            data['BD PERSONAL OP.'].forEach(row => {
+                const option = document.createElement('option');
+                option.text = row.join(' - ');
+                select1.add(option);
+                console.log('Añadida opción a select1:', option);
+            });
+        } else {
+            console.warn('No se encontraron datos para Hoja1');
+        }
+
+        if (data['BD CLIENTES']) {
+            console.log('Datos de Hoja2:', data['BD CLIENTES']);
+            data['BD CLIENTES'].forEach(row => {
+                const option = document.createElement('option');
+                option.text = row.join(' - ');
+                select2.add(option);
+                console.log('Añadida opción a select2:', option);
+            });
+        } else {
+            console.warn('No se encontraron datos para Hoja2');
+        }
+    })
+    .catch(error => {
+        console.error('Hubo un problema con la operación fetch:', error);
+    });
 });
 
 function calcularTotal() {
@@ -111,4 +159,33 @@ function removeTable() {
     } else {
         alert('No hay tablas adicionales para eliminar.');
     }
+}
+
+function changeLogo() {
+    console.log('changeLogo function called'); // Agrega esta línea
+    var empresa = document.getElementById('empresa_options').value;
+    var logoContainer = document.getElementById('logo-container');
+    
+    if (empresa === 'ISI') {
+        logoContainer.innerHTML = '<img src="images/Logo ISI simple.png" alt="Logo ISI simple">';
+    } else if (empresa === 'CSM') {  
+        logoContainer.innerHTML = '<img src="images/Logo CSM sello.png" alt="Logo CSM">';
+    } else if (empresa === 'MIC') {
+        logoContainer.innerHTML = '<img src="images/logo mic.jpg" alt="Logo MIC">';
+    } else {
+        logoContainer.innerHTML = `
+            <img src="images/Logo ISI simple.png" alt="Logo ISI simple">
+            <img src="images/Logo CSM sello.png" alt="Logo CSM">
+            <img src="images/logo mic.jpg" alt="Logo MIC">
+        `;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    changeLogo();
+});
+
+function generateFolio() {
+    var folio = Math.random().toString(36).substring(2, 8).toUpperCase();
+    document.getElementById('folio').value = folio;
 }
